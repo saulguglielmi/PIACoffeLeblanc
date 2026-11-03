@@ -24,9 +24,8 @@
 5. [Uso y funcionalidades](#5-uso-y-funcionalidades)
 6. [Decisiones de diseño y notas técnicas](#6-decisiones-de-diseño-y-notas-técnicas)
 7. [Documentación adicional](#7-documentación-adicional)
-8. [Conclusiones del equipo](#8-conclusiones-del-equipo)
-9. [Referencias](#9-referencias)
-10. [Créditos y descargo](#10-créditos-y-descargo)
+8. [Referencias](#9-referencias)
+9. [Créditos y descargo](#10-créditos-y-descargo)
 
 ---
 
