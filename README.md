@@ -537,28 +537,6 @@ No hay API, servidor, telemetría ni llamadas a internet en tiempo de ejecución
 
 ---
 
-## 8. Conclusiones del equipo
-
-### Saúl
-
-El mayor aprendizaje fue integrar una IA local en una aplicación de escritorio real sin convertirla en un servicio externo. LLamaSharp y un GGUF cuantizado permiten que Morgana responda en CPU dentro del mismo proceso, pero el proyecto también muestra que un modelo pequeño necesita límites claros: lista blanca de comodines, reintentos y respuestas deterministas. Esa combinación —IA para redactar, código para los datos— fue la decisión más importante para que el asistente fuera confiable.
-
-### Javier
-
-La parte más valiosa fue diseñar el punto de venta para que el cajero pueda trabajar sin pensar en la tecnología. El carrito, la propina, el cambio y el ticket siguen un orden natural; las validaciones evitan errores antes de que ocurran y los mensajes de color indican qué pasó. El tema claro y la paleta de la cafetería no son solo estética: reducen distracciones y hacen que la pantalla se sienta como parte del negocio.
-
-### Felipe
-
-El proyecto confirmó que la calidad no termina cuando la app compila. Probar el flujo completo, verificar que los reportes coincidan con las ventas, documentar las respuestas de Morgana y aceptar sus límites fue tan importante como programar. La documentación y las pruebas manuales permitieron detectar diferencias entre lo que el modelo “dice” y lo que los datos reales “son”, y dejaron una base para que otra persona pueda instalar, operar y mantener el sistema.
-
-### Conclusión grupal
-
-Cafetería Leblanc POS demuestra que es posible construir un punto de venta completo y un asistente conversacional local con herramientas accesibles: WinUI 3 para la interfaz, .NET 8 para la lógica, JSON para la persistencia y un modelo Qwen afinado con LoRA para el lenguaje. El resultado no es un prototipo aislado: cubre venta, inventario, personal, reportes, exportaciones y consultas en lenguaje natural, con una arquitectura comprensible y sin dependencia de la nube.
-
-El equipo considera que el sistema cumple el objetivo funcional y deja un camino claro de mejora: proteger las contraseñas con hash, hacer más robusta la recuperación de la base, ampliar las pruebas automatizadas y mejorar la calidad del asistente con un conjunto de validación. La principal lección es que la IA aporta valor cuando se integra con reglas de negocio explícitas y cuando el equipo asume sus límites con transparencia.
-
----
-
 ## 9. Referencias
 
 > Formato APA 7.ª edición. Los enlaces se incluyen para consulta; las fechas de acceso corresponden a noviembre de 2026.
