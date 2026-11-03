@@ -562,7 +562,7 @@ No hay API, servidor, telemetría ni llamadas a internet en tiempo de ejecución
 ## 10. Créditos y descargo
 
 - **Proyecto:** Cafetería Leblanc POS, versión 1.0.0.
-- **Equipo:** Saúl, Javier y Felipe.
+- **Creador:** Saul Guglielmi Marin
 - **Modelo:** Qwen2.5-1.5B-Instruct afinado con LoRA; conversión a GGUF Q4_K_M y ejecución con LLamaSharp.
 - **Inspiración visual y de personaje:** *Persona 5* y *Café Leblanc*. Los nombres, personajes y marcas asociadas pertenecen a sus respectivos titulares (Atlus / SEGA). Este proyecto es académico y no comercial.
 - **Datos de demostración:** la base incluida puede contener ventas y usuarios de prueba; no debe usarse como sistema fiscal ni como única copia de información real.
