@@ -1,0 +1,99 @@
+<Page
+    x:Class="CafeteriaPOS.Views.LoginPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:vm="using:CafeteriaPOS.ViewModels">
+
+    <Page.Resources>
+        <SolidColorBrush x:Key="TextControlBackground" Color="#D5CFBA"/>
+        <SolidColorBrush x:Key="TextControlBackgroundPointerOver" Color="#D5CFBA"/>
+        <SolidColorBrush x:Key="TextControlBackgroundFocused" Color="#D5CFBA"/>
+        <SolidColorBrush x:Key="TextControlBackgroundDisabled" Color="#C9C3AE"/>
+
+        <SolidColorBrush x:Key="TextControlForeground" Color="#38240E"/>
+        <SolidColorBrush x:Key="TextControlForegroundPointerOver" Color="#38240E"/>
+        <SolidColorBrush x:Key="TextControlForegroundFocused" Color="#38240E"/>
+        <SolidColorBrush x:Key="TextControlForegroundDisabled" Color="#6B5A45"/>
+
+        <SolidColorBrush x:Key="TextControlPlaceholderForeground" Color="#6B5A45"/>
+        <SolidColorBrush x:Key="TextControlPlaceholderForegroundPointerOver" Color="#6B5A45"/>
+        <SolidColorBrush x:Key="TextControlPlaceholderForegroundFocused" Color="#6B5A45"/>
+
+        <SolidColorBrush x:Key="TextControlBorderBrush" Color="#38240E"/>
+        <SolidColorBrush x:Key="TextControlBorderBrushPointerOver" Color="#38240E"/>
+        <SolidColorBrush x:Key="TextControlBorderBrushFocused" Color="#38240E"/>
+        <SolidColorBrush x:Key="TextControlBorderBrushDisabled" Color="#8A7458"/>
+
+        <SolidColorBrush x:Key="TextControlElevationBorderBrush" Color="#38240E"/>
+        <SolidColorBrush x:Key="TextControlElevationBorderFocusedBrush" Color="#38240E"/>
+    </Page.Resources>
+
+    <Grid>
+        <Grid.Background>
+            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                <GradientStop Color="#000000" Offset="0.0"/>
+                <GradientStop Color="#40362F" Offset="1.0"/>
+            </LinearGradientBrush>
+        </Grid.Background>
+
+        <Border Background="#40362F"
+                BorderBrush="#38240E"
+                BorderThickness="1"
+                CornerRadius="16"
+                Padding="40"
+                Width="400"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center">
+
+            <StackPanel Spacing="20">
+
+                <TextBlock Text="☕ Café Leblanc"
+                           FontSize="28"
+                           FontWeight="Bold"
+                           Foreground="White"
+                           HorizontalAlignment="Center"/>
+
+                <TextBlock Text="Inicia sesión para continuar"
+                           FontSize="13"
+                           Foreground="#FFC7B79C"
+                           HorizontalAlignment="Center"
+                           Margin="0,-12,0,8"/>
+
+                <TextBox x:Name="UserTextBox"
+                         MaxLength="20"
+                         BeforeTextChanging="UserTextBox_BeforeTextChanging"
+                         PlaceholderText="Usuario"
+                         Text="{x:Bind ViewModel.Usuario, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                         CornerRadius="8"
+                         Background="#D5CFBA"
+                         BorderBrush="#D5CFBA"
+                         Foreground="#38240E"/>
+
+                <PasswordBox x:Name="PassBox"
+                             MaxLength="4"
+                             PlaceholderText="Contraseña"
+                             CornerRadius="8"
+                             Background="#D5CFBA"
+                             BorderBrush="#38240E"
+                             Foreground="#38240E"
+                             KeyDown="PassBox_KeyDown"/>
+
+                <Button x:Name="LoginButton"
+                        Content="Iniciar Sesión"
+                        HorizontalAlignment="Stretch"
+                        CornerRadius="8"
+                        Background="#38240E"
+                        Foreground="White"
+                        FontWeight="SemiBold"
+                        Padding="12,10"
+                        Click="LoginButton_Click"/>
+
+                <TextBlock x:Name="MessageTextBlock"
+                           Text="{x:Bind ViewModel.MensajeError, Mode=OneWay}"
+                           Foreground="#FFFF6B6B"
+                           FontWeight="SemiBold"
+                           HorizontalAlignment="Center"/>
+            </StackPanel>
+        </Border>
+    </Grid>
+</Page>

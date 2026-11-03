@@ -1,0 +1,17 @@
+<Application
+    x:Class="CafeteriaPOS.App"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:helpers="using:CafeteriaPOS.Helpers"
+    RequestedTheme="Light">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <XamlControlsResources xmlns="using:Microsoft.UI.Xaml.Controls"/>
+            </ResourceDictionary.MergedDictionaries>
+
+            <helpers:MoneyConverter x:Key="MoneyConverter"/>
+            <helpers:MessageBrushConverter x:Key="MessageBrushConverter"/>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

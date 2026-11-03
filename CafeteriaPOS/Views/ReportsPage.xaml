@@ -1,0 +1,251 @@
+<Page
+    x:Class="CafeteriaPOS.Views.ReportsPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:models="using:CafeteriaPOS.Models">
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <StackPanel Padding="16" Spacing="16">
+            <Grid>
+                <TextBlock Text="Reportes y métricas de hoy" FontSize="24" FontWeight="Bold"/>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Spacing="8">
+                    <Button Content="🔄 Actualizar"
+                        Command="{x:Bind ViewModel.CargarReportesCommand}"/>
+                    <Button Content="💾 Exportar CSV"
+                        Click="Exportar_Click"
+                        Background="#FF38240E"
+                        Foreground="White"
+                        FontWeight="SemiBold"/>
+                    <Button Content="📄 Exportar JSON"
+                        Click="ExportarJson_Click"
+                        Background="#FF38240E"
+                        Foreground="White"
+                        FontWeight="SemiBold"/>
+                </StackPanel>
+            </Grid>
+
+            <Grid ColumnSpacing="12">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Border Grid.Column="0" CornerRadius="12" Padding="20"
+                        Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
+                        BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
+                        BorderThickness="1">
+                    <StackPanel Spacing="6">
+                        <TextBlock Text="Total vendido" FontSize="15" Foreground="Black"/>
+                        <TextBlock Text="{x:Bind ViewModel.TotalVendidoHoy, Mode=OneWay, Converter={StaticResource MoneyConverter}}"
+                                   FontSize="28" FontWeight="Bold" Foreground="#1D4533"/>
+                        <TextBlock Text="Sin propinas" FontSize="11" Foreground="#666666"/>
+                    </StackPanel>
+                </Border>
+
+                <Border Grid.Column="1" CornerRadius="12" Padding="20"
+                        Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
+                        BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
+                        BorderThickness="1">
+                    <StackPanel Spacing="6">
+                        <TextBlock Text="Ventas hoy" FontSize="15" Foreground="Black"/>
+                        <TextBlock Text="{x:Bind ViewModel.TotalVentasHoy, Mode=OneWay, Converter={StaticResource MoneyConverter}}"
+                                   FontSize="28" FontWeight="Bold" Foreground="#1D4533"/>
+                        <TextBlock Text="Con propinas" FontSize="11" Foreground="#666666"/>
+                    </StackPanel>
+                </Border>
+
+                <Border Grid.Column="2" CornerRadius="12" Padding="20"
+                        Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
+                        BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
+                        BorderThickness="1">
+                    <StackPanel Spacing="6">
+                        <TextBlock Text="Tickets" FontSize="14" Foreground="Black"/>
+                        <TextBlock Text="{x:Bind ViewModel.CantidadVentasHoy, Mode=OneWay}"
+                                   FontSize="28" FontWeight="Bold"/>
+                    </StackPanel>
+                </Border>
+
+                <Border Grid.Column="3" CornerRadius="12" Padding="20"
+                        Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
+                        BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
+                        BorderThickness="1">
+                    <StackPanel Spacing="6">
+                        <TextBlock Text="Propinas hoy" FontSize="14" Foreground="Black"/>
+                        <TextBlock Text="{x:Bind ViewModel.TotalPropinasHoy, Mode=OneWay, Converter={StaticResource MoneyConverter}}"
+                                   FontSize="28" FontWeight="Bold" Foreground="#1D4533"/>
+                    </StackPanel>
+                </Border>
+
+                <Border Grid.Column="4" CornerRadius="12" Padding="20"
+                        Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
+                        BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
+                        BorderThickness="1">
+                    <StackPanel Spacing="6">
+                        <TextBlock Text="Promedio" FontSize="14" Foreground="Black"/>
+                        <TextBlock Text="{x:Bind ViewModel.PromedioTicket, Mode=OneWay, Converter={StaticResource MoneyConverter}}"
+                                   FontSize="28" FontWeight="Bold"/>
+                    </StackPanel>
+                </Border>
+            </Grid>
+
+            <Grid ColumnSpacing="16">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Border Grid.Column="0" CornerRadius="12" Padding="20"
+                        Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
+                        BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
+                        BorderThickness="1">
+                    <StackPanel Spacing="12">
+                        <TextBlock Text="Productos más vendidos (hoy)"
+                                   FontSize="16" FontWeight="Bold"/>
+
+                        <ListView ItemsSource="{x:Bind ViewModel.TopProductos}"
+                                  SelectionMode="None"
+                                  MaxHeight="320"
+                                  Visibility="{x:Bind ViewModel.VisibilidadListas, Mode=OneWay}">
+                            <ListView.ItemTemplate>
+                                <DataTemplate x:DataType="models:ProductoTop">
+                                    <Grid Padding="0,6" ColumnSpacing="8">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="70"/>
+                                            <ColumnDefinition Width="90"/>
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock Grid.Column="0"
+                                                   Text="{x:Bind NombreProducto}"
+                                                   FontWeight="SemiBold"
+                                                   VerticalAlignment="Center"/>
+                                        <TextBlock Grid.Column="1"
+                                                   Text="{x:Bind CantidadTotal, Mode=OneWay}"
+                                                   HorizontalAlignment="Right"
+                                                   VerticalAlignment="Center"/>
+                                        <TextBlock Grid.Column="2"
+                                                   Text="{x:Bind MontoTotal, Mode=OneWay, Converter={StaticResource MoneyConverter}}"
+                                                   HorizontalAlignment="Right"
+                                                   FontWeight="SemiBold"
+                                                   Foreground="#38240E"
+                                                   VerticalAlignment="Center"/>
+                                    </Grid>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+
+                        <TextBlock Text="Sin ventas hoy"
+                                   Foreground="#FF7A6147"
+                                   FontSize="13"
+                                   HorizontalAlignment="Center"
+                                   Margin="0,20,0,20"
+                                   Visibility="{x:Bind ViewModel.VisibilidadSinVentas, Mode=OneWay}"/>
+                    </StackPanel>
+                </Border>
+
+                <Border Grid.Column="1" CornerRadius="12" Padding="20"
+                        Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
+                        BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
+                        BorderThickness="1">
+                    <StackPanel Spacing="12">
+                        <TextBlock Text="Propinas por empleado (hoy)"
+                                   FontSize="16" FontWeight="Bold"/>
+
+                        <ListView ItemsSource="{x:Bind ViewModel.PropinasPorEmp}"
+                                  SelectionMode="None"
+                                  MaxHeight="320"
+                                  Visibility="{x:Bind ViewModel.VisibilidadListas, Mode=OneWay}">
+                            <ListView.ItemTemplate>
+                                <DataTemplate x:DataType="models:PropinasEmpleado">
+                                    <Grid Padding="0,6" ColumnSpacing="8">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="80"/>
+                                            <ColumnDefinition Width="80"/>
+                                            <ColumnDefinition Width="90"/>
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock Grid.Column="0" Text="{x:Bind NombreEmpleado}" FontWeight="SemiBold" VerticalAlignment="Center"/>
+                                        <TextBlock Grid.Column="1" Text="{x:Bind PropinasEfectivo, Mode=OneWay, Converter={StaticResource MoneyConverter}}"
+                                                   HorizontalAlignment="Right" Foreground="#FF7A6147" FontSize="12" VerticalAlignment="Center"/>
+                                        <TextBlock Grid.Column="2" Text="{x:Bind PropinasTarjeta, Mode=OneWay, Converter={StaticResource MoneyConverter}}"
+                                                   HorizontalAlignment="Right" Foreground="#FF7A6147" FontSize="12" VerticalAlignment="Center"/>
+                                        <TextBlock Grid.Column="3" Text="{x:Bind TotalPropinas, Mode=OneWay, Converter={StaticResource MoneyConverter}}"
+                                                   HorizontalAlignment="Right" FontWeight="Bold" Foreground="#FF00B894" VerticalAlignment="Center"/>
+                                    </Grid>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+
+                        <TextBlock Text="Sin ventas hoy"
+                                   Foreground="#FF7A6147"
+                                   FontSize="13"
+                                   HorizontalAlignment="Center"
+                                   Margin="0,20,0,20"
+                                   Visibility="{x:Bind ViewModel.VisibilidadSinVentas, Mode=OneWay}"/>
+
+                        <TextBlock Text="Efectivo | Tarjeta | Total"
+                                   FontSize="11" Foreground="#FF7A6147"
+                                   HorizontalAlignment="Right"
+                                   Visibility="{x:Bind ViewModel.VisibilidadListas, Mode=OneWay}"/>
+                    </StackPanel>
+                </Border>
+            </Grid>
+
+            <Border CornerRadius="12" Padding="20"
+                    Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
+                    BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
+                    BorderThickness="1">
+                <StackPanel Spacing="12">
+                    <TextBlock Text="📅 Últimos 7 días" FontSize="16" FontWeight="Bold"/>
+
+                    <ListView ItemsSource="{x:Bind ViewModel.Ultimos7Dias}" SelectionMode="None">
+                        <ListView.HeaderTemplate>
+                            <DataTemplate>
+                                <Grid Padding="12,8" ColumnSpacing="8"
+                                      Background="{ThemeResource LayerFillColorDefaultBrush}">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="120"/>
+                                        <ColumnDefinition Width="80"/>
+                                        <ColumnDefinition Width="150"/>
+                                        <ColumnDefinition Width="150"/>
+                                        <ColumnDefinition Width="160"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Grid.Column="0" Text="Fecha" FontWeight="SemiBold"/>
+                                    <TextBlock Grid.Column="1" Text="Ventas" FontWeight="SemiBold"/>
+                                    <TextBlock Grid.Column="2" Text="Total Sin Propinas" FontWeight="SemiBold"/>
+                                    <TextBlock Grid.Column="3" Text="Total Con Propinas" FontWeight="SemiBold"/>
+                                    <TextBlock Grid.Column="4" Text="Promedio de ventas" FontWeight="SemiBold"/>
+                                </Grid>
+                            </DataTemplate>
+                        </ListView.HeaderTemplate>
+
+                        <ListView.ItemTemplate>
+                            <DataTemplate x:DataType="models:ResumenDia">
+                                <Grid Padding="12,6" ColumnSpacing="8">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="120"/>
+                                        <ColumnDefinition Width="80"/>
+                                        <ColumnDefinition Width="150"/>
+                                        <ColumnDefinition Width="150"/>
+                                        <ColumnDefinition Width="160"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Grid.Column="0" Text="{x:Bind Fecha}" VerticalAlignment="Center"/>
+                                    <TextBlock Grid.Column="1" Text="{x:Bind CantidadVentas, Mode=OneWay}" VerticalAlignment="Center"/>
+                                    <TextBlock Grid.Column="2" Text="{x:Bind TotalSinPropinas, Mode=OneWay, Converter={StaticResource MoneyConverter}}" FontWeight="SemiBold" VerticalAlignment="Center"/>
+                                    <TextBlock Grid.Column="3" Text="{x:Bind TotalConPropinas, Mode=OneWay, Converter={StaticResource MoneyConverter}}" FontWeight="Bold" Foreground="#1D4533" VerticalAlignment="Center"/>
+                                    <TextBlock Grid.Column="4" Text="{x:Bind PromedioVenta, Mode=OneWay, Converter={StaticResource MoneyConverter}}" VerticalAlignment="Center"/>
+                                </Grid>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </StackPanel>
+            </Border>
+
+            <TextBlock Text="{x:Bind ViewModel.MensajeEstado, Mode=OneWay}"
+                       Foreground="{x:Bind ViewModel.MensajeEstado, Mode=OneWay, Converter={StaticResource MessageBrushConverter}}"
+                       FontWeight="SemiBold" FontSize="12"/>
+        </StackPanel>
+    </ScrollViewer>
+</Page>

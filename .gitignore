@@ -1,0 +1,37 @@
+# Visual Studio
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+*.userprefs
+
+# Compilación
+[Bb]in/
+[Oo]bj/
+[Ll]og/
+[Ll]ogs/
+publish/
+Publish/
+
+# Paquetes y artefactos
+*.nupkg
+*.snupkg
+*.msix
+*.msixupload
+*.appx
+*.appxupload
+
+# Modelo de IA y datos locales (no se versionan por tamaño o privacidad)
+*.gguf
+db.json
+*.bak
+Tickets/
+
+# Bloqueos de Office
+~$*
+
+# Sistema
+Thumbs.db
+desktop.ini
+.DS_Store
