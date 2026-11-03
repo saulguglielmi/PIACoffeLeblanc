@@ -1,6 +1,9 @@
 # ☕ Cafetería Leblanc — Punto de venta con IA local
 
 > Aplicación de escritorio para operar una cafetería: ventas, inventario, empleados, reportes y un asistente virtual que funciona **sin internet**, dentro del mismo proceso de la aplicación.
+>
+
+#**Descargar la base de datos y la IA Local: https://drive.google.com/drive/folders/1ebR8w7jC4XKu7cER51dtjsGr2TVY7i_s?usp=sharing**
 
 **Stack principal:** WinUI 3 · .NET 8 · CommunityToolkit.Mvvm · JSON · LLamaSharp · Qwen2.5-1.5B-Instruct + LoRA
 
